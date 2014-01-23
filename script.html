@@ -1,0 +1,44 @@
+<script> 
+$('#referenceForm-addAuthor').click(function() {
+    var addAuthorButton = $(this);
+    var nextIndex = Number(addAuthorButton.data('nextindex'));
+    addAuthorButton.data('nextindex', nextIndex + 1);
+
+    var controlLabel = $('<label/>', {
+      'class': 'control-label',
+      'for': 'referenceForm-author' + nextIndex
+    }).text('Author:');
+
+    var lastNameControl = $('<input/>', {
+      'id': 'referenceForm-author' + nextIndex,
+      'class': 'required',
+      'name': 'lastName[' + nextIndex + ']',
+      'type': 'text',
+      'placeholder': 'Last name'
+    });
+
+    var firstNameControl = $('<input/>', {
+      'name': 'firstName[' + nextIndex + ']',
+      'class': 'required',
+      'type': 'text',
+      'placeholder': 'First name'
+    });
+
+    var removeButton =
+        $('<button class="referenceForm-removeAuthor btn btn-danger" type="button">X</button>').
+            click(onRemoveAuthor);
+
+    $('<div class="control-group kind-article kind-book"/>').
+        append(controlLabel).
+        append($('<div class="controls"/>').
+            append(lastNameControl).
+            append(' ').
+            append(firstNameControl).
+            append(' ').
+            append(removeButton)).
+        insertBefore(addAuthorButton.closest('.control-group'));
+
+    $('.referenceForm-removeAuthor').prop('disabled', false).removeClass('disabled');
+  });
+
+</script> 
