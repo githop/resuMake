@@ -67,13 +67,15 @@ function processForm(form) {
   }
   
   doc.appendParagraph("Employment History").setAttributes(h1);
-  for (var e = 0; e < empHist.length; e++) {
-    doc.appendTable([[formInput.empName[e], formInput.empYears[e]]]).setBorderWidth(0).setAttributes(h1);
-    doc.appendParagraph(formInput.description[e]).setAttributes(plain);
-    
+  
+ 
+  for (var e = 0; e  <= empHist.length + 1; e++) {
+    doc.appendTable([[empHist[0][e], empHist[1][e]]]).setAttributes(h1)
+       .setBorderWidth(0);
+    doc.appendParagraph(empHist[2][e]).setAttributes(plain);
   }
   
+ doc.appendParagraph(formInput.school + " " + formInput.eduYears).setAttributes(h1);
+ doc.appendParagraph(formInput.degree).setAttributes(h1);
+  
 }
-
-
-
