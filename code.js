@@ -1,8 +1,13 @@
 function doGet() {
-  var html = HtmlService.createHtmlOutputFromFile('page')
+  var html = HtmlService.createTemplateFromFile('page').evaluate()
       .setSandboxMode(HtmlService.SandboxMode.NATIVE)
       .setTitle('ResuMake Test');
   return html
+}
+
+function include(filename) {
+  return HtmlService.createHtmlOutputFromFile(filename)
+      .getContent();
 }
 
 function processForm(form) {  
@@ -23,6 +28,7 @@ function processForm(form) {
   };
   
   var certs = [formInput.clinDoc, formInput.stork, formInput.beacon, formInput.anesthesia];
+  var empHist = [formInput.empName, formInput.empYears, formInput.description];
   
   var gDoc   = DocumentApp.create("Resume for: " + formInput.firstName + " " + formInput.lastName);
   var doc    = gDoc.getBody();
@@ -61,8 +67,13 @@ function processForm(form) {
   }
   
   doc.appendParagraph("Employment History").setAttributes(h1);
-  doc.appendTable([[formInput.empName, formInput.empYears]]).setBorderWidth(0);
+  for (var e = 0; e < empHist.length; e++) {
+    doc.appendTable([[formInput.empName[e], formInput.empYears[e]]]).setBorderWidth(0).setAttributes(h1);
+    doc.appendParagraph(formInput.description[e]).setAttributes(plain);
+    
+  }
   
 }
+
 
 
