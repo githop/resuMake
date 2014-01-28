@@ -1,44 +1,19 @@
-<script> 
-$('#referenceForm-addAuthor').click(function() {
-    var addAuthorButton = $(this);
-    var nextIndex = Number(addAuthorButton.data('nextindex'));
-    addAuthorButton.data('nextindex', nextIndex + 1);
+<script>
+var orgName = '<div class="col-xs-6 pad">' +
+               ' <input type="text" class="form-control input-sm" name="empName" placeholder="Employer / Org">' +
 
-    var controlLabel = $('<label/>', {
-      'class': 'control-label',
-      'for': 'referenceForm-author' + nextIndex
-    }).text('Author:');
+            '</div>' +
 
-    var lastNameControl = $('<input/>', {
-      'id': 'referenceForm-author' + nextIndex,
-      'class': 'required',
-      'name': 'lastName[' + nextIndex + ']',
-      'type': 'text',
-      'placeholder': 'Last name'
-    });
+            '<div class="col-xs-6 pad">' +
+               ' <input class="form-control input-sm" name="empYears" type="text" placeholder="Years">' +
+            '</div>' +
 
-    var firstNameControl = $('<input/>', {
-      'name': 'firstName[' + nextIndex + ']',
-      'class': 'required',
-      'type': 'text',
-      'placeholder': 'First name'
-    });
+            '<div class="container pad">' +
+                '<textarea class="form-control" name="description" rows="3" placeholder="Job Description"></textarea>' +
+           ' </div>'
 
-    var removeButton =
-        $('<button class="referenceForm-removeAuthor btn btn-danger" type="button">X</button>').
-            click(onRemoveAuthor);
-
-    $('<div class="control-group kind-article kind-book"/>').
-        append(controlLabel).
-        append($('<div class="controls"/>').
-            append(lastNameControl).
-            append(' ').
-            append(firstNameControl).
-            append(' ').
-            append(removeButton)).
-        insertBefore(addAuthorButton.closest('.control-group'));
-
-    $('.referenceForm-removeAuthor').prop('disabled', false).removeClass('disabled');
-  });
-
-</script> 
+$('#addEmp').click(function(){
+  var addEmpButton = $(this);
+  $('.emphistRow').append(orgName); 
+});
+</script>
