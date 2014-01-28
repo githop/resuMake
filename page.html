@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
-
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <style>
     .row  {padding: 5px;}
     .pad  {padding: 8px;}
@@ -64,6 +64,7 @@
                 <textarea class="form-control" name="description" rows="3" placeholder="Job Description"></textarea>
             </div>
         </div>
+        <button type="button" id="addEmp" class="btn btn-default">Add Another Job</button>
 
         <div class="row eduRow">
             <h3>Education</h3>
@@ -95,21 +96,8 @@
 
 
 
-
 <script>
 google.script.run.processForm();
 </script>
 
-
-<!--
-<form id='firstName'>
-First Name: <input name='name' type='text'>
-<input type='button' value='submit' onclick='google.script.run.processForm(document.getElementById("root"))' /> 
-<input type="button" value="Close" onclick="google.script.host.close()" />
-</form>
-
-<script>
-google.script.run.processForm();
-</script>
-</div>
---!> 
+<?!= include("script"); ?>
